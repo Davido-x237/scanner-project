@@ -1,15 +1,21 @@
 import os
+import hashlib
 
 FILE = "users.txt"
 
-# Ensure file exists
 if not os.path.exists(FILE):
     open(FILE, "w").close()
+
+
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
 
 
 def register():
     username = input("Enter username: ")
     password = input("Enter password: ")
+
+    hashed = hash_password(password)
 
     with open(FILE, "r") as f:
         users = f.readlines()
@@ -20,21 +26,23 @@ def register():
             return
 
     with open(FILE, "a") as f:
-        f.write(f"{username}:{password}\n")
+        f.write(f"{username}:{hashed}\n")
 
-    print("Registration successful!")
+    print("Registration successful! 🔐")
 
 
 def login():
     username = input("Enter username: ")
     password = input("Enter password: ")
 
+    hashed = hash_password(password)
+
     with open(FILE, "r") as f:
         users = f.readlines()
 
     for user in users:
         stored_user, stored_pass = user.strip().split(":")
-        if username == stored_user and password == stored_pass:
+        if username == stored_user and hashed == stored_pass:
             print("Login successful! ✅")
             return
 
@@ -43,7 +51,7 @@ def login():
 
 def main():
     while True:
-        print("\n=== LOGIN SYSTEM ===")
+        print("\n=== SECURE LOGIN SYSTEM ===")
         print("1. Register")
         print("2. Login")
         print("3. Exit")
