@@ -16,6 +16,10 @@ A collection of beginner-to-intermediate cybersecurity and networking tools buil
 - Uses DNS resolution
 - Helps discover hidden services
 
+### ⚡ Threaded Port Scanner
+- Scans ports 1–1024 quickly using multi-threading
+- Detects open ports on a target system
+- Demonstrates concurrency in Python
 ---
 
 ## ⚙️ Installation
