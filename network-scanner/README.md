@@ -1,23 +1,29 @@
-# 🛠️ Cybersecurity Toolkit
+# 📡 Network Scanner
 
-A collection of cybersecurity and networking tools built in Python.
+A Python-based local network reconnaissance tool that detects active devices in your LAN.
 
 ---
 
-## 📌 Tools
+## 🚀 Features
 
-### 🔍 Web Info Tool
-`web-info/`
-- Website reconnaissance
+- Automatically detects your local network range
+- Scans all IPs in /24 subnet
+- Identifies active devices using ICMP ping
+- Displays total number of live hosts
 
-### 🌐 Subdomain Scanner
-`subdomain-scanner/`
-- Finds subdomains
+---
 
-### ⚡ Port Scanner
-`port-scanner/`
-- Fast threaded port scanning
+## ⚙️ How It Works
 
-### 📡 Network Scanner
-`network-scanner/`
-- Detect devices on local network
+The tool:
+1. Detects your local IP address
+2. Extracts network base (e.g. 192.168.1)
+3. Pings all IPs from .1 to .254
+4. Reports active devices
+
+---
+
+## ▶️ Usage
+
+```bash
+python3 network_scanner.py
