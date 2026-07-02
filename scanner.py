@@ -1,29 +1,118 @@
 import socket
+import ipaddress
+import os
+from datetime import datetime
+from time import time
 
-target = input("Enter target IP: ")
+# ============================================
+# CYBER RECON TOOLKIT - PORT SCANNER
+# ============================================
 
-print(f"\nScanning {target}...\n")
+# Validate IP Address
+try:
+    target = input("Enter Target IP Address: ").strip()
+    ipaddress.ip_address(target)
+except ValueError:
+    print("\n[-] Invalid IP Address!")
+    exit()
 
+# Common Ports Dictionary
 common_ports = {
+    20: "FTP Data",
     21: "FTP",
     22: "SSH",
     23: "Telnet",
     25: "SMTP",
     53: "DNS",
+    67: "DHCP",
+    68: "DHCP",
     80: "HTTP",
+    110: "POP3",
+    123: "NTP",
+    143: "IMAP",
+    161: "SNMP",
+    389: "LDAP",
     443: "HTTPS",
+    445: "SMB",
     3306: "MySQL",
-    8000: "HTTP (Custom)"
+    3389: "Remote Desktop",
+    5432: "PostgreSQL",
+    8000: "HTTP (Custom)",
+    8080: "HTTP Proxy"
 }
 
-for port in common_ports:
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.settimeout(0.5)
+# Create reports folder if it doesn't exist
+os.makedirs("reports", exist_ok=True)
 
-    result = s.connect_ex((target, port))
+# Generate report filename
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+report_file = f"reports/scan_{timestamp}.txt"
+
+# Store results
+open_ports = []
+
+print("\n" + "=" * 55)
+print("        CYBER RECON TOOLKIT - PORT SCANNER")
+print("=" * 55)
+print(f"Target       : {target}")
+print(f"Started At   : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+print("=" * 55)
+
+start_time = time()
+
+# Scan Ports
+for port, service in common_ports.items():
+
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(0.5)
+
+    result = sock.connect_ex((target, port))
 
     if result == 0:
-        service = common_ports[port]
-        print(f"[+] Port {port} OPEN → {service}")
+        print(f"[OPEN ] Port {port:<5} | {service}")
+        open_ports.append((port, service))
 
-    s.close()
+    sock.close()
+
+end_time = time()
+elapsed = round(end_time - start_time, 2)
+
+# Display Summary
+print("\n" + "=" * 55)
+print("SCAN SUMMARY")
+print("=" * 55)
+
+if open_ports:
+    print(f"Open Ports Found : {len(open_ports)}")
+
+    for port, service in open_ports:
+        print(f"{port:<5} -> {service}")
+
+else:
+    print("No common open ports found.")
+
+print(f"\nTime Taken : {elapsed} seconds")
+print("=" * 55)
+
+# Save Report
+with open(report_file, "w") as file:
+
+    file.write("=" * 55 + "\n")
+    file.write("CYBER RECON TOOLKIT - PORT SCAN REPORT\n")
+    file.write("=" * 55 + "\n\n")
+
+    file.write(f"Target       : {target}\n")
+    file.write(f"Date         : {datetime.now()}\n")
+    file.write(f"Time Taken   : {elapsed} seconds\n\n")
+
+    if open_ports:
+        file.write("OPEN PORTS\n")
+        file.write("-" * 30 + "\n")
+
+        for port, service in open_ports:
+            file.write(f"{port:<5} {service}\n")
+
+    else:
+        file.write("No common open ports found.\n")
+
+print(f"\n[+] Report saved to: {report_file}")
