@@ -1,0 +1,21 @@
+============================================================
+CYBER RECON TOOLKIT - SUBDOMAIN SCAN REPORT
+============================================================
+
+Target Domain : github.com
+Date          : 2026-07-05 06:05:23.441537
+Time Taken    : 3.37 seconds
+
+DISCOVERED SUBDOMAINS
+------------------------------------------------------------
+www.github.com                 140.82.121.3
+test.github.com                192.0.2.1
+api.github.com                 140.82.121.6
+blog.github.com                185.199.111.153
+shop.github.com                140.82.121.3
+admin.github.com               140.82.113.24
+smtp.github.com                140.82.114.31
+ns1.github.com                 192.0.2.1
+ns2.github.com                 192.0.2.2
+support.github.com             185.199.109.133
+docs.github.com                185.199.111.154

@@ -1,0 +1,9 @@
+============================================================
+CYBER RECON TOOLKIT - SUBDOMAIN SCAN REPORT
+============================================================
+
+Target Domain : vpn.github.com
+Date          : 2026-07-05 06:11:29.321264
+Time Taken    : 6.38 seconds
+
+No common subdomains found.
