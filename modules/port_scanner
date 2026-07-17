@@ -45,9 +45,7 @@ common_ports = {
 os.makedirs("reports", exist_ok=True)
 
 # Generate report filename
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-report_file = f"reports/scan_{timestamp}.txt"
-
+report_file = "reports/port_scan_report.txt"
 # Store results
 open_ports = []
 
@@ -95,8 +93,11 @@ print(f"\nTime Taken : {elapsed} seconds")
 print("=" * 55)
 
 # Save Report
-with open(report_file, "w") as file:
-
+with open(report_file, "a") as file:
+    file.write("\n")
+    file.write("=" * 60 + "\n")
+    file.write(f"Scan Date : {datetime.now()}\n")
+    file.write("=" * 60 + "\n")
     file.write("=" * 55 + "\n")
     file.write("CYBER RECON TOOLKIT - PORT SCAN REPORT\n")
     file.write("=" * 55 + "\n\n")

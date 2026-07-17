@@ -1,0 +1,8 @@
+[2026-07-10 09:18:37.036520] LOGIN FAILED - Wrong password for 'Davido-x'.
+[2026-07-10 09:20:16.326140] REGISTER FAILED - Weak password for 'Annie'.
+[2026-07-10 09:20:53.997180] REGISTER SUCCESS - User 'Annie' created.
+[2026-07-10 09:21:38.212087] LOGIN SUCCESS - User 'Annie'.
+[2026-07-17 12:36:04.003632] REGISTER FAILED - Weak password for 'qwerty'.
+[2026-07-17 12:36:43.413647] REGISTER SUCCESS - User 'qwerty' created.
+[2026-07-17 12:37:08.514550] LOGIN FAILED - Wrong password for 'qwerty'.
+[2026-07-17 12:37:28.645742] LOGIN SUCCESS - User 'qwerty'.

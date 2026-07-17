@@ -46,9 +46,7 @@ subdomains = [
 os.makedirs("reports", exist_ok=True)
 
 # Report filename
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-report_file = f"reports/subdomain_scan_{timestamp}.txt"
-
+report_file = "reports/subdomain_report.txt"
 print("\nScanning...\n")
 
 start_time = time()
@@ -90,11 +88,15 @@ else:
 print(f"\nTime Taken : {elapsed} seconds")
 
 # Save Report
-with open(report_file, "w") as report:
+with open(report_file, "a") as report:
 
     report.write("=" * 60 + "\n")
     report.write("CYBER RECON TOOLKIT - SUBDOMAIN SCAN REPORT\n")
     report.write("=" * 60 + "\n\n")
+    report.write("\n")
+    report.write("=" * 60 + "\n")
+    report.write(f"Scan Date : {datetime.now()}\n")
+    report.write("=" * 60 + "\n")
 
     report.write(f"Target Domain : {domain}\n")
     report.write(f"Date          : {datetime.now()}\n")

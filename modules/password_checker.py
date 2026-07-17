@@ -42,9 +42,7 @@ common_passwords = [
 # Create reports folder
 os.makedirs("reports", exist_ok=True)
 
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-report_file = f"reports/password_report_{timestamp}.txt"
-
+report_file = "reports/password_report.txt"
 # -------------------------------
 # Check if password is common
 # -------------------------------
@@ -190,12 +188,15 @@ else:
 # Save Report
 # -------------------------------
 
-with open(report_file, "w") as report:
+with open(report_file, "a") as report:
 
     report.write("=" * 60 + "\n")
     report.write("PASSWORD ANALYSIS REPORT\n")
     report.write("=" * 60 + "\n\n")
-
+    report.write("\n")
+    report.write("=" * 60 + "\n")
+    report.write(f"Analysis Date : {datetime.now()}\n")
+    report.write("=" * 60 + "\n")
     report.write(f"Date                 : {datetime.now()}\n")
     report.write(f"Password Length      : {length}\n")
     report.write(f"Uppercase            : {has_upper}\n")
